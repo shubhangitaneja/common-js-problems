@@ -1,0 +1,27 @@
+</!DOCTYPE html>
+<html>
+<head>
+	<title>Functions</title>
+</head>
+<body>
+  <h4>Debounce Example</h4>
+  <input type="text" id="input1" />
+  <span id="debounced-output"></span>
+  <br />
+  <br />
+  <hr />
+  <h4>Throttle Example</h4>
+  <input type="text" id="input2" />
+  <span id="throttle-output"></span>
+
+  <script src="functions.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  	document.getElementById('input1').addEventListener('input', debounce((e) => {
+  		document.getElementById('debounced-output').textContent = e.target.value;
+  	}, 1000));
+  	document.getElementById('input2').addEventListener('input', throttle((e) => {
+  		document.getElementById('throttle-output').textContent = e.target.value;
+  	}, 500));
+  </script>
+</body>
+</html>

@@ -12,3 +12,34 @@ function debounce(fn, interval, scope = this) {
 		}, interval);
 	}
 }
+
+
+function throttle(fn, interval, scope = this) {
+	let timer = 0;
+	let currentArgs = [];
+	let shouldExecute = false;
+
+	function execute() {
+		timer = setTimeout(handleTimeout, interval);
+		fn.apply(scope, currentArgs);
+	}
+
+    function handleTimeout() {
+    	timer = 0;
+    	if (shouldExecute) {
+    		shouldExecute = false;
+            execute();
+    	}
+    }
+
+	return function(...args) {
+		currentArgs = args;
+
+		if (!timer) {
+			// Execute the function and start a timer.
+			execute();
+		} else {
+			shouldExecute = true;
+		}
+	}
+}
