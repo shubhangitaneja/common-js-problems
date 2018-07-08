@@ -19,7 +19,7 @@ function throttle(fn, interval, scope = this) {
 	let currentArgs = [];
 	let shouldExecute = false;
 
-	function execute() {
+    function execute() {
 		timer = setTimeout(handleTimeout, interval);
 		fn.apply(scope, currentArgs);
 	}
@@ -32,7 +32,7 @@ function throttle(fn, interval, scope = this) {
     	}
     }
 
-	return function(...args) {
+    return function(...args) {
 		currentArgs = args;
 
 		if (!timer) {
