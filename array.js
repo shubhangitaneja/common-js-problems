@@ -71,3 +71,31 @@ function flattenArrayIterative2(arr) {
   }
   return flatArray.reverse();
 }
+
+function mutateArray(items, indices) {
+  items.forEach((item, index) => {
+    while (index !== indices[index]) {
+      let tempIndex = indices[indices[index]];
+      let tempItem = items[indices[index]];
+      items[indices[index]] = items[index];
+      items[index] = tempItem;
+      indices[indices[index]] = indices[index];
+      indices[index] = tempIndex;
+    }
+  });
+}
+var items = ['a', 'b', 'c', 'd', 'e', 'f'];
+var indices = [2, 5, 0, 3, 4, 1];
+var expectedOutput = ['c', 'f', 'a', 'd', 'e', 'b'];
+mutateArray(items, indices);
+console.log(items, expectedOutput);
+
+function mutateArray(items, indices) {
+  items.forEach((item, index) => {
+    while (index !== indices[index]) {
+      // Using ES6 destructring assignment.
+      [items[indices[index]], items[index]] = [items[index], items[indices[index]]];
+      [indices[indices[index]], indices[index]] = [indices[index], indices[indices[index]]];
+    }
+  });
+}
